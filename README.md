@@ -1,7 +1,7 @@
 # jgraux
 Kube manifests and instructions to deploy grafana with influxdb in cluster. And use in jmeter to test your apps.
 
-### In this short tutorial, I will show you how to quickly deploy grafana and influxdb to your kubernetes cluster. Get access to them from outside the cluster and use them for load tests of your web applications.
+### In this short tutorial, I will show you how to quickly deploy grafana and influxdb to your kubernetes cluster. Get access to them from outside the cluster and use them for load tests of your web applications with JMeter.
 
 ### I am using k3s cluster, you can find out how to install it here: https://rancher.com/docs/k3s/latest/en/installation/
 
@@ -11,7 +11,9 @@ kubectl create namespace jmeter-test
 ```
 
 **Hint: set alias kj to kubectl -n jmeter-test**
-`alias kj="kubectl -n jmeter-test"`
+```
+alias kj="kubectl -n jmeter-test"
+```
 
 # Deploy influxdb.
 
@@ -285,4 +287,29 @@ spec:
 
 Go to path where all created files located.
 `kubectl -n jmeter-test apply -f .`
+
+
+# Finalize deploy.
+
+### Now you can access `http://<domain>/grafana` to visit grafana and `http://<domain>/` for influxdb admin panel.
+
+# Install and configure JMeter
+
+### You can use this tool to make load test for you endpoint/endpoint.
+
+## Step 1. Install
+
+Go to https://jmeter.apache.org/download_jmeter.cgi and install jmeter
+
+## Step 2. Get required template.
+
+Go to `templates` --> select `JDBC Load Test` --> `Select`.
+
+## Step 3. Install plugin for Flux query language.
+
+Go to https://grafana.com/grafana/dashboards/13644 and install plugin `jmeter-plugins-influxdb2-listener-<>.jar`
+
+## Step 4. Configure JMeter
+
+
 
