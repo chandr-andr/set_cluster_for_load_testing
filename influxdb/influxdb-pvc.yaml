@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: influxdb-claim
+spec:
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
