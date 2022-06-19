@@ -311,5 +311,39 @@ Go to https://grafana.com/grafana/dashboards/13644 and install plugin `jmeter-pl
 
 ## Step 4. Configure JMeter
 
+Go to the `Thread group` --> enter name and set as in image. 
+![image](https://user-images.githubusercontent.com/62915291/174488618-02338437-c73d-4093-953b-2c26a06490b3.png)
 
+Now right click on the left side on thread group --> `Add` --> `Listener` --> `Backend Listener`.  
+Go to `Backend Listener implementation` and select ![image](https://user-images.githubusercontent.com/62915291/174488697-fa517645-4748-4540-a50b-e0215edcba39.png)  
 
+Go to `Backend Listener implementation` and select ![image](https://user-images.githubusercontent.com/62915291/174488697-fa517645-4748-4540-a50b-e0215edcba39.png)  
+
+Then you have to change  
+1) `influxDBHost` set you host
+2) `influxDBPort` (we created 30001) if not changed dont change  
+3) `influxDB` (we created jmeter)  if not changed dont change  
+4) `influxDBOrganization` --> go to influxdb admin panel --> `Me` --> OrganizationID  
+5) `influxDBToken` --> go to influxdb admin panel --> API tokens --> copy and paste
+![image](https://user-images.githubusercontent.com/62915291/174488723-ad808b6b-06a0-441c-a09f-194ed5243c03.png)
+
+Also you have go to the HTTP request page in JMeter and apply you http request. I think you can do it by yourself.  
+
+That's all with JMeter.
+
+# Configure Grafana.
+
+## Part 1. Create datasource.
+
+Just look at the screen and paste your data  
+![image](https://user-images.githubusercontent.com/62915291/174489044-8afc186c-3b08-4ff6-ad35-9c164fdff8fd.png)
+
+## Part 2. Add dashboard.  
+
+Download json here - https://grafana.com/grafana/dashboards/13644.
+
+Go to ![image](https://user-images.githubusercontent.com/62915291/174489065-15e64d32-12d0-407f-b1fb-b754a223a386.png)
+
+And import json file. After select our datasource.
+
+## That's all.
