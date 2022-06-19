@@ -144,7 +144,25 @@ spec:
               number: 8086
 ```
 
-## Step 6. Deploy influxdb
+## Step 6 (Optional). Create nodePort service for influx.
+Create nodePort service for influx.
+Create file `influxdb-np.yaml`
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-np
+spec:
+  type: NodePort
+  selector:
+    app: influxdb
+  ports:
+  - port: 8086
+    targetPort: 8086
+    nodePort: 30001
+```
+
+## Step 7. Deploy influxdb
 
 Go to path where all created files located.
 `kubectl -n jmeter-test apply -f .`
@@ -154,6 +172,7 @@ deployment.apps/influxdb created
 persistentvolume/influxdb created
 persistentvolumeclaim/influxdb-claim create
 service/influxdb created
+service/influxdb-np created
 ```
 
 Then run `kubectl -n jmeter-test get pod` and
@@ -171,12 +190,12 @@ Create secret for grafana.
 ```
 k create secret generic grafana-creds \
   --from-literal=GF_SECURITY_ADMIN_USER=admin \
-  --from-literal=GF_SECURITY_ADMIN_PASSWORD=grafana
+  --from-literal=GF_SECURITY_ADMIN_PASSWORD=grafana \
 ```
 ### **Attention**.
 If you want to change root url for grafana, add these:
 ```
---from-literal=GF_SERVER_ROOT_URL=<protocol>://<your domain>:<port>/grafana
+--from-literal=GF_SERVER_ROOT_URL=<protocol>://<your domain>:<port>/grafana \
 --from-literal=GF_SERVER_SERVE_FROM_SUB_PATH='true'
 ```
 Because of these envs you will access grafana with url, for example: `http://<your domain>:<port>/grafana`
