@@ -1,4 +1,4 @@
-# jgraux
+# Set cluster for load testing
 Kube manifests and instructions to deploy grafana with influxdb in cluster. And use in jmeter to test your apps.
 
 ### In this short tutorial, I will show you how to quickly deploy grafana and influxdb to your kubernetes cluster. Get access to them from outside the cluster and use them for load tests of your web applications with JMeter.
